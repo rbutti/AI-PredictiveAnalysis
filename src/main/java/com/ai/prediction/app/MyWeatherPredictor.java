@@ -4,19 +4,13 @@ package com.ai.prediction.app;
  */
 
 import java.io.BufferedReader;
-import java.util.Properties;
 
 import weka.classifiers.Classifier;
-import weka.classifiers.bayes.net.search.fixed.NaiveBayes;
 import weka.classifiers.trees.J48;
 import weka.core.Attribute;
 import weka.core.DenseInstance;
 import weka.core.FastVector;
-import weka.core.Instance;
 import weka.core.Instances;
-import weka.core.ProtectedProperties;
-import weka.core.SparseInstance;
-import weka.filters.unsupervised.attribute.StringToWordVector;
 
 /**
  * @author rbutti
