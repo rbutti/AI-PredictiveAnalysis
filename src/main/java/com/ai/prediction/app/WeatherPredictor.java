@@ -1,3 +1,4 @@
+package com.ai.prediction.app;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -11,6 +12,7 @@ import weka.classifiers.trees.DecisionStump;
 import weka.classifiers.trees.J48;
 import weka.core.FastVector;
 import weka.core.Instances;
+import weka.core.Range;
 
 /**
  * 
@@ -26,7 +28,8 @@ public class WeatherPredictor {
 		BufferedReader inputReader = null;
 
 		try {
-			inputReader = new BufferedReader(new FileReader(WeatherPredictor.class.getClassLoader().getResource(filename).getFile()));
+			inputReader = new BufferedReader(
+					new FileReader(WeatherPredictor.class.getClassLoader().getResource(filename).getFile()));
 		} catch (FileNotFoundException ex) {
 			System.err.println("File not found: " + filename);
 		}
@@ -36,10 +39,11 @@ public class WeatherPredictor {
 
 	public static Evaluation classify(Classifier model, Instances trainingSet, Instances testingSet) throws Exception {
 		Evaluation evaluation = new Evaluation(trainingSet);
-
+		StringBuffer buffer = new StringBuffer();
+		Range range = new Range();
 		model.buildClassifier(trainingSet);
-		evaluation.evaluateModel(model, testingSet);
-
+		evaluation.evaluateModel(model, testingSet, buffer, range, false);
+		System.out.println(buffer);
 		return evaluation;
 	}
 
@@ -47,10 +51,12 @@ public class WeatherPredictor {
 		double correct = 0;
 
 		for (int i = 0; i < predictions.size(); i++) {
+
 			NominalPrediction np = (NominalPrediction) predictions.elementAt(i);
 			if (np.predicted() == np.actual()) {
 				correct++;
 			}
+			// System.out.println(np);
 		}
 
 		return 100 * correct / predictions.size();
@@ -109,6 +115,7 @@ public class WeatherPredictor {
 			// but nice-looking way.
 			System.out.println("Accuracy of " + models[j].getClass().getSimpleName() + ": "
 					+ String.format("%.2f%%", accuracy) + "\n---------------------------------");
+
 		}
 
 	}
