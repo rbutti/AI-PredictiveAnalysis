@@ -33,7 +33,7 @@ public class MyWeatherPredictor {
 			train.setClassIndex(train.numAttributes() - 1);
 
 		// testDataCreated Here - Results play "yes"
-		// Instances test = createTestData("sunny", 69d, 70d, "FALSE");
+		 //Instances test = createTestData("sunny", 69d, 70d, "FALSE");
 
 		// testDataCreated Here - Results play "yes"
 		Instances test = createTestData("sunny", 85d, 85d, "FALSE");
