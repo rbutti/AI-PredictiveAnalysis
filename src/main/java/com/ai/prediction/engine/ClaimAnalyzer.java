@@ -46,6 +46,7 @@ public class ClaimAnalyzer {
 	public Claim analyzeClaim(Claim claim) {
 
 		try {
+			System.out.println(claim);
 			// testDataCreated Here - Results play "yes"
 			// Instances test = createTestData("sunny", 69d, 70d, "FALSE");
 
