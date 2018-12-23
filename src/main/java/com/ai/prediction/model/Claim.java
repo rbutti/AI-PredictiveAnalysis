@@ -7,6 +7,7 @@ public class Claim implements Serializable {
 
 	private static final long serialVersionUID = -2578750383190124007L;
 	private UUID claimId;
+	private String clientName;
 	private String providerName;
 	private float claimAmount;
 	private boolean provDetailsReq;
@@ -52,14 +53,23 @@ public class Claim implements Serializable {
 		this.providerType = providerType;
 	}
 
+	public String getClientName() {
+		return clientName;
+	}
+
+	public void setClientName(String clientName) {
+		this.clientName = clientName;
+	}
+
 	public enum ProviderType {
 		IN_NETWORK, OUT_NETWORK;
 	}
 
 	@Override
 	public String toString() {
-		return "Claim [claimId=" + claimId + ", providerName=" + providerName + ", claimAmount=" + claimAmount
-				+ ", provDetailsReq=" + provDetailsReq + ", providerType=" + providerType + "]";
+		return "Claim [claimId=" + claimId + ", clientName=" + clientName + ", providerName=" + providerName
+				+ ", claimAmount=" + claimAmount + ", provDetailsReq=" + provDetailsReq + ", providerType="
+				+ providerType + "]";
 	}
 
 }
